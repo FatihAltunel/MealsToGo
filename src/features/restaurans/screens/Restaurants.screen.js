@@ -1,40 +1,44 @@
-import {React, useState} from "react";
-import { SafeAreaView, View, Text, StyleSheet} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantsInfo } from "../components/RestaurantsInfo.component";
+import { RestaurantsInfoCard } from "../components/Restaurants-Info-card.component";
+import styled from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../../../infrastructure/theme/index";
 
 
+    const SafeArea = styled(SafeAreaView)`
+    flex:1;
+    `;
+
+    const SearchContainer = styled(View)`
+    padding: ${(props)=> props.theme.sizes[1]};
+    background-color: ${(props)=> props.theme.colors.bg.primary};
+    `;
+
+    const RestauranListContainer = styled(View)`
+    flex:1;
+    padding: ${(props)=> props.theme.sizes[1]};
+    background-color: ${(props)=> props.theme.colors.ui.success};
+    `;
 
 export const RestaurantsScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     return(
-        <SafeAreaView style={styles.container}>
-        <View style={styles.searchfield}>
-            <Searchbar
-            placeholder="Search"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-            />
-        </View>
-
-        <View style={styles.listfield}>
-            <RestaurantsInfo/>
-        </View>
-    </SafeAreaView>
+        <ThemeProvider theme={theme}>
+            <SafeArea>
+                <SearchContainer>
+                    <Searchbar
+                    mode="bar"
+                    placeholder="Search"
+                    onChangeText={setSearchQuery}
+                    value={searchQuery}
+                    />
+                </SearchContainer>
+                <RestauranListContainer>
+                    <RestaurantsInfoCard/>
+                </RestauranListContainer>
+            </SafeArea>
+        </ThemeProvider>
     );
 }
-
-const styles = StyleSheet.create({
-    container:{
-      flex:1,
-    },
-    searchfield:{
-      padding:16,
-      backgroundColor:'white',
-    },
-    listfield:{
-      flex:1,
-      padding:16,
-      backgroundColor:'blue',
-    },
-  })
