@@ -14,8 +14,9 @@ import { theme } from "../../../infrastructure/theme/index";
     `;
 
     const RestaurantCardTitle = styled(Text)`
-    font-weight:${(props)=>props.theme.fontWeights.bold};
-    padding: ${(props) => props.theme.sizes[2]};
+    font-family: ${(props)=>props.theme.fonts.body};
+    padding: ${(props) => props.theme.sizes[1]};
+    padding-left: ${(props) => props.theme.sizes[2]};
     font-size:${(props) => props.theme.fontSizes.title};
     `;
     

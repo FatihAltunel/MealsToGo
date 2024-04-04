@@ -12,7 +12,7 @@ import { theme } from "../../../infrastructure/theme/index";
     `;
 
     const SearchContainer = styled(View)`
-    padding: ${(props)=> props.theme.sizes[1]};
+    padding: ${(props)=> props.theme.sizes[2]};
     background-color: ${(props)=> props.theme.colors.bg.primary};
     `;
 
