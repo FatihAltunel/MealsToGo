@@ -19,7 +19,7 @@ import { theme } from "../../../infrastructure/theme/index";
     const RestauranListContainer = styled(View)`
     flex:1;
     padding: ${(props)=> props.theme.sizes[1]};
-    background-color: ${(props)=> props.theme.colors.ui.success};
+    background-color: ${(props)=> props.theme.colors.ui.tertiary};
     `;
 
 export const RestaurantsScreen = () => {

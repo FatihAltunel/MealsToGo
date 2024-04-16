@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import { Text } from "react-native-paper";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../infrastructure/theme/index";
@@ -27,8 +28,8 @@ export const RestaurantsInfoCard = ({ Restaurants = {} }) => {
         isOpenNow = true,
         rating= 2,
         isClosedTemporarily=false,
+        isGamesAvailable=true,
     } = Restaurants;
-
 
     const ratingArray = Array.from(new Array(Math.floor(rating)))
     return(
@@ -44,11 +45,11 @@ export const RestaurantsInfoCard = ({ Restaurants = {} }) => {
                                 ))}
                         </Rating>
                         <SectionEnd>
-                        {isClosedTemporarily ? (
-                            <Text>CLOSED TEMPORARILY</Text>
-                        ) : isOpenNow ? (
-                            <SvgXml xml={open} height={30} width={30}/>
-                        ) : null}           
+                        {isClosedTemporarily ? <Text>Closed Temporarily</Text> : null}
+                        {!isClosedTemporarily && isOpenNow &&  <SvgXml xml={open} height={30} width={30}/>}
+                        {!isClosedTemporarily && isGamesAvailable && ( 
+                            <Image style={{marginLeft: 8}} source={require('../../../../assets/gameIcon.png')} />
+                        )}
                         </SectionEnd>
                     </Section>
                     <RestaurantCardAddress>{address}</RestaurantCardAddress>
