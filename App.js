@@ -6,6 +6,8 @@ import {  useFonts as useOswald , Oswald_400Regular } from '@expo-google-fonts/o
 import {  useFonts as useLato , Lato_400Regular } from '@expo-google-fonts/lato';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 
 export default function App() {
@@ -30,7 +32,28 @@ export default function App() {
   return (
     <>
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+      
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({color, size }) => {
+          let iconName;
+
+          if (route.name === 'Restaurants') {
+            iconName = 'restaurant';
+          } else if (route.name === 'Settings') {
+            iconName = 'settings';
+          } else if (route.name === 'Map') {
+            iconName = 'map';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}
+      
+      >
         <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
         <Tab.Screen name="Map" component={Map} />
         <Tab.Screen name="Settings" component={Settings} />
